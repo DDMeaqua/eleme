@@ -2,7 +2,7 @@
     <div class="login">
         <div class="logo"><img src="../assets/logo-kfc.svg" alt="logo"></div>
         <!-- 手机号 -->
-        <InpuGroup type="number" v-model="phone" placeholder="手机号" :btnTitle="btnTitle" :disabled="disabled" :error="errors.phone"></InpuGroup>
+        <InputGroup type="number" v-model="phone" placeholder="手机号" :btnTitle="btnTitle" :disabled="disabled" :error="errors.phone"></InputGroup>
         <!-- 验证码 -->
         <InputGroup type="number" v-model="verifyCode" placeholder="验证码"  :error="errors.code"></InputGroup>
 
@@ -33,6 +33,29 @@ import InputGroup from "../components/Inputgroup.vue"
                 btnTitle:"获取验证码",
                 disabled:false,
             }
+        },
+        methods: {
+            getVerifyCode() {
+                if (this.validatePhone()) {
+                    // 发送网络请求
+                }
+            },
+            validatePhone(){
+                if(!this.phone){
+                    this.errors = {
+                        phone:'手机号不能为空'
+                    };
+                    return false
+                }else if (!/^1[3456789]\d{9}$/.test(this.phone)){
+                    this.errors = {
+                        phone:'请写上正确的手机号',
+                    }
+                    return false
+                }else{
+                    this.errors = {}
+                    return true
+                }
+            },
         },
         components: {
             InputGroup,
