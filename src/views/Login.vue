@@ -65,6 +65,8 @@ export default {
         if(this.verifyCode == 111111){
             localStorage.setItem("ele_login",true)
             this.$router.push('/')
+        }else{
+          alert('验证码错误！')
         };
     },
     getVerifyCode() {

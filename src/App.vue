@@ -33,6 +33,8 @@ export default {
         function onComplete(data) {
           // data是具体的定位信息
           console.log(data);
+          self.$store.dispatch("setLocation",data);
+          self.$store.dispatch("setAddress",data.formattedAddress)
         }
 
         function onError(data) {
