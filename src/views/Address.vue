@@ -1,21 +1,23 @@
 <template>
     <div class="address">
         <Header :isLeft="true" title="选择收货地址"></Header>
-        <div class="citi_search">
+        <div class="city_search">
             <div class="search">
                 <span class="city">
                     {{city}}
                     <i class="fa fa-angle-down"></i>
                 </span>
                 <i class="fa fa-search"></i>
-                <input type="text" v-model="search_val">
+                <input type="text" v-model="search_val" placeholder="地址">
             </div>
+            <Location :address="address"></Location>
         </div>
     </div>
 </template>
 
 <script>
 import Header from "../components/Header.vue";
+import Location from "../components/Location.vue";
     export default {
         name:"Address",
         data() {
@@ -24,9 +26,19 @@ import Header from "../components/Header.vue";
                 search_val:""
             }
         },
-        components: {
-            Header,
+        computed: {
+            address() {
+                return this.$store.getters.Location.formattedAddress; 
+            }
         },
+        components: {
+            Header,Location
+        },
+        beforeRouteEnter(to,from,next){
+            next(vm =>{
+                vm.city = to.params.city
+            })
+        }
         
     }
 </script>
@@ -38,6 +50,11 @@ import Header from "../components/Header.vue";
     overflow: auto;
     box-sizing: border-box;
     padding-top: 45px;
+}
+.city_search{
+    background-color: #fff;
+    padding: 10px 20px;
+    color: #333;
 }
 .search{
     background-color: #eee;

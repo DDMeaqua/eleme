@@ -12,6 +12,7 @@ export default {
   },
   methods: {
     getLocation() {
+      const self = this;
       AMap.plugin("AMap.Geolocation", function () {
         var geolocation = new AMap.Geolocation({
           // 是否使用高精度定位，默认：true
@@ -20,27 +21,29 @@ export default {
           timeout: 10000,
         });
 
-        geolocation.getCurrentPosition(function (status, result) {
-          if (status == "complete") {
-            onComplete(result);
-          } else {
-            onError(result);
-          }
-        });
-        // AMap.event.addListener(geolocation, "complete", onComplete);
-        // AMap.event.addListener(geolocation, "error", onError);
+        // geolocation.getCurrentPosition(function (status, result) {
+        //   if (status == "complete") {
+        //     onComplete(result);
+        //   } else {
+        //     onError(result);
+        //   }
+        // });
+
+        geolocation.getCurrentPosition();
+        AMap.event.addListener(geolocation, "complete", onComplete);
+        AMap.event.addListener(geolocation, "error", onError);
 
         function onComplete(data) {
           // data是具体的定位信息
           console.log(data);
-          this.$store.dispatch("setLocation",data);
-          this.$store.dispatch("setAddress",data.formattedAddress);
+          self.$store.dispatch("setLocation",data);
+          self.$store.dispatch("setAddress",data.formattedAddress);
         }
 
         function onError(data) {
           // 定位出错
           console.log(data);
-          this.getLngLatLocation();
+          self.getLngLatLocation();
         }
       });
     },
@@ -55,7 +58,7 @@ export default {
             AMap.plugin("AMap.Geocoder", function () {
               var geocoder = new AMap.Geocoder({
                 // city 指定进行编码查询的城市，支持传入城市名、adcode 和 citycode
-                city: result.citycode,
+                city: result.adcode,
               });
 
               var lnglat = result.rectangle.split(";")[0].split(",");
@@ -72,7 +75,6 @@ export default {
                     formattedAddress:data.regeocode.formattedAddress
                   });
 
-
                   self.$store.dispatch("setAddress",data.regeocode.formattedAddress)
                 }
               });
@@ -81,6 +83,8 @@ export default {
         });
       });
     },
+
+
   },
 };
 </script>
