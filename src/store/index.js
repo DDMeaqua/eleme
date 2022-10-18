@@ -37,7 +37,7 @@ export default new Vuex.Store({
     setLocation:({commit},location) =>{
       commit(types.SET_LOCATION,location)
     },
-    setLocation:({commit},address) =>{
+    setAddress:({commit},address) =>{
       commit(types.SET_ADDRESS,address)
     },
   },

@@ -1,7 +1,7 @@
 <template>
     <div class="home">
-        <div class="header">
-            <div class="address_map">
+        <div class="head">
+            <div class="address_map" @click="$router.push('/address')">
                 <i class="fa fa-map-marker"></i>
                 <span>{{address}}</span>
                 <i class="fa fa-sort-desc"></i>
@@ -20,24 +20,27 @@
         computed:{
             address(){
                 return this.$store.getters.address;
-            }
+            },
+            city(){
+                return this.$store.getters.location.addressComponent.city
+            },
         }
         
     }
 </script>
 
-<style>
+<style scoped>
 .home{
     width: 100%;
     height: 100%;
     overflow: auto;
     box-sizing: border-box;
 }
-.header{
+.head{
     background-color: #009eef;
     padding: 16px;
 }
-.header .address_map{
+.head .address_map{
     color: #fff;
     font-weight: bold;
 }
@@ -52,7 +55,7 @@
     white-space: nowrap;
     text-overflow: ellipsis;
 }
-.header .shop_search{
+.head .shop_search{
     margin-top: 10px;
     background-color: #fff;
     padding: 10px 0;
