@@ -21,17 +21,17 @@ export default {
           timeout: 10000,
         });
 
-        // geolocation.getCurrentPosition(function (status, result) {
-        //   if (status == "complete") {
-        //     onComplete(result);
-        //   } else {
-        //     onError(result);
-        //   }
-        // });
+        geolocation.getCurrentPosition(function (status, result) {
+          if (status == "complete") {
+            onComplete(result);
+          } else {
+            onError(result);
+          }
+        });
 
-        geolocation.getCurrentPosition();
-        AMap.event.addListener(geolocation, "complete", onComplete);
-        AMap.event.addListener(geolocation, "error", onError);
+        // geolocation.getCurrentPosition();
+        // AMap.event.addListener(geolocation, "complete", onComplete);
+        // AMap.event.addListener(geolocation, "error", onError);
 
         function onComplete(data) {
           // data是具体的定位信息
@@ -66,7 +66,7 @@ export default {
               geocoder.getAddress(lnglat, function (status, data) {
                 if (status === "complete" && data.info === "OK") {
                   // result为对应的地理位置详细信息
-                  // console.log(data);
+                  console.log(data);
                   self.$store.dispatch("setLocation",{
                     addressComponent:{
                       city:result.city,

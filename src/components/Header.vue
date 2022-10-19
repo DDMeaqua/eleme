@@ -7,7 +7,7 @@
         </div>
         <!-- 中间标题 -->
         <h1 class="header-title">{{title}}</h1>
-        <div class="header-button">默认</div>
+        <div class="header-button">管理</div>
     </div>
 </template>
 
