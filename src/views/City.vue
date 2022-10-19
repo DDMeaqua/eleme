@@ -22,6 +22,8 @@ export default {
   data() {
     return {
       city_val: "",
+      cityInfo: "",
+      keys: [],
     };
   },
   components: {
@@ -35,20 +37,28 @@ export default {
       );
     },
   },
-  created () {
+  created() {
     this.getCityInfo();
   },
   methods: {
     getCityInfo() {
-        this.$axios("/api/posts/cities").then(res=>{
-            console.log(res.data);
-            // this.cityInfo = res.data;
-            // this.keys = Object.keys(res.data)
-            // console.log(this.keys);
-        }).catch(err =>{
-            console.log(err);
-        })
-    }
+      this.$axios(
+        "https://shadow.elemecdn.com/lib/city-list@0.0.3/city_list.json"
+      ).then((res) => {
+        console.log(res.data);
+        let allcity = [];
+        for (let i = 0; i < res.data.cityList.length; i++) {
+          for (let j = 0; j < res.data.cityList[i].cities.length; j++) {
+            allcity.push(res.data.cityList[i].cities[j].name)
+          }
+        }
+        console.log(allcity);
+        // this.cityInfo = res.data.cityList[0].cities[0].name;
+        // console.log(this.cityInfo);
+        // this.keys = Object.keys(res.data.cityList.idx)
+        // console.log(this.keys);
+      });
+    },
   },
 };
 </script>

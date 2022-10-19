@@ -19,6 +19,15 @@ axios.interceptors.request.use(config =>{
   Indicator.open()
   return config
 },error =>{
+  return Promise.reject(error)
+})
+
+// 响应拦截
+axios.interceptors.response.use(response =>{
+  // 加载动画
+  Indicator.close()
+  return response
+},error =>{
   Indicator.close()
   return Promise.reject(error)
 })
