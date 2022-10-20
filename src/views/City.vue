@@ -11,12 +11,14 @@
       <div class="location">
         <Location :address="city"></Location>
       </div>
+      <Cities :allcity="allcity"></Cities>
     </div>
   </div>
 </template>
 
 <script>
 import Location from "../components/Location.vue";
+import Cities from "../components/Cities.vue";
 export default {
   name: "City",
   data() {
@@ -24,10 +26,11 @@ export default {
       city_val: "",
       cityInfo: "",
       keys: [],
+      allcity:[]
     };
   },
   components: {
-    Location,
+    Location,Cities,
   },
   computed: {
     city() {
@@ -46,17 +49,12 @@ export default {
         "https://shadow.elemecdn.com/lib/city-list@0.0.3/city_list.json"
       ).then((res) => {
         console.log(res.data);
-        let allcity = [];
         for (let i = 0; i < res.data.cityList.length; i++) {
           for (let j = 0; j < res.data.cityList[i].cities.length; j++) {
-            allcity.push(res.data.cityList[i].cities[j].name)
+            this.allcity.push(res.data.cityList[i].cities[j].name)
           }
         }
-        console.log(allcity);
-        // this.cityInfo = res.data.cityList[0].cities[0].name;
-        // console.log(this.cityInfo);
-        // this.keys = Object.keys(res.data.cityList.idx)
-        // console.log(this.keys);
+        console.log(this.allcity);
       });
     },
   },

@@ -42,7 +42,7 @@ export default {
 
         function onError(data) {
           // 定位出错
-          console.log(data);
+          // console.log(data);
           self.getLngLatLocation();
         }
       });

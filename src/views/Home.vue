@@ -16,19 +16,34 @@
         搜索商家 商家名称
       </div>
     </div>
-    <div class="container" style="height:2000px">
+    <div class="container" style="height: 2000px">
+      <!-- 轮播 -->
+      <mt-swipe :auto="3000" class="swiper">
+        <mt-swipe-item><img src="../../public/img/lunbo1.jpg" alt=""></mt-swipe-item>
+        <mt-swipe-item><img src="../../public/img/lunbo4.jpg" alt=""></mt-swipe-item>
+        <mt-swipe-item><img src="../../public/img/lunbo5.jpg" alt=""></mt-swipe-item>
+        <mt-swipe-item><img src="../../public/img/lunbo_22.webp" alt=""></mt-swipe-item>
+      </mt-swipe>
+
+      <!-- 分类 -->
+    <mt-swipe :auto="0">
+      <mt-swipe-item>1</mt-swipe-item>
+      <mt-swipe-item>2</mt-swipe-item>
+    </mt-swipe>
 
     </div>
   </div>
 </template>
 
 <script>
+import { Swipe, SwipeItem } from "mint-ui";
 export default {
   name: "home",
   data() {
     return {
-        swipeImgs: ""
-    }
+      swipeImgs: "",
+      test: "",
+    };
   },
   computed: {
     address() {
@@ -41,15 +56,17 @@ export default {
       );
     },
   },
-  created(){
-    // this.getData();
+  created() {
+    this.getData();
   },
   methods: {
-    // getData() {
-    //     this.$axios("https://shadow.elemecdn.com/lib/city-list@0.0.3/city_list.json").then(res=>{
-    //         console.log(res);
-    //     })
-    // }
+    getData() {
+      this.$axios("/shop.json").then((res) => {
+        console.log(
+          res.data.data.data.frontend_page_shop_list_recommend.fields.items
+        );
+      });
+    },
   },
 };
 </script>
@@ -94,5 +111,12 @@ export default {
   top: 0px;
   z-index: 999;
   box-sizing: border-box;
+}
+.swiper{
+  height: 120px;
+}
+.swiper img{
+  height: 120px;
+  width: 100%;
 }
 </style>
