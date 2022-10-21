@@ -26,10 +26,15 @@
       </mt-swipe>
 
       <!-- 分类 -->
-    <mt-swipe :auto="0">
-      <mt-swipe-item>1</mt-swipe-item>
-      <mt-swipe-item>2</mt-swipe-item>
-    </mt-swipe>
+      <div class="fenlei">
+        <div class="fz" v-for="(item,index) in fl" :key="index">
+          <div><img :src='`../img/${item.img}`'></div>
+          <span>{{item.title}}</span>
+        </div>
+      </div>
+
+      <!-- 首页的商家 -->
+      
 
     </div>
   </div>
@@ -43,6 +48,18 @@ export default {
     return {
       swipeImgs: "",
       test: "",
+      fl:[
+        {id:1,img:"001.png",title:"美食"},
+        {id:2,img:"002.png",title:"超市便利"},
+        {id:3,img:"003.png",title:"甜点饮品"},
+        {id:4,img:"004.png",title:"生鲜果蔬"},
+        {id:5,img:"005.png",title:"鲜花蛋糕"},
+        {id:6,img:"006.png",title:"下午茶"},
+        {id:7,img:"007.png",title:"美团专送"},
+        {id:8,img:"008.png",title:"快餐"},
+        {id:9,img:"009.png",title:"汉堡披萨"},
+        {id:10,img:"010.png",title:"异国料理"},
+      ]
     };
   },
   computed: {
@@ -118,5 +135,28 @@ export default {
 .swiper img{
   height: 120px;
   width: 100%;
+}
+.fenlei{
+  padding: 3px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: center;
+  text-align: center;
+}
+.fenlei .fz{
+  outline: none;
+  box-sizing: border-box;
+  overflow: hidden;
+  width: 70px;
+  height: 70px;
+}
+.fz img{
+    width: 44px;
+    height: 44px;
+}
+.fz span{
+  font-size: 14px;
+  
 }
 </style>
