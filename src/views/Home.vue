@@ -34,7 +34,12 @@
       </div>
 
       <!-- 首页的商家 -->
-      
+      <div class="shop">
+        <div class="restaurant" v-for="(item,index) in shop" :key="index">
+          <span>{{item.fields.restaurant.name}}</span>
+        </div>
+      </div>
+
 
     </div>
   </div>
@@ -46,6 +51,8 @@ export default {
   name: "home",
   data() {
     return {
+      sname:[],
+      shop:[],
       swipeImgs: "",
       test: "",
       fl:[
@@ -59,7 +66,7 @@ export default {
         {id:8,img:"008.png",title:"快餐"},
         {id:9,img:"009.png",title:"汉堡披萨"},
         {id:10,img:"010.png",title:"异国料理"},
-      ]
+      ],
     };
   },
   computed: {
@@ -79,11 +86,21 @@ export default {
   methods: {
     getData() {
       this.$axios("/shop.json").then((res) => {
-        console.log(
-          res.data.data.data.frontend_page_shop_list_recommend.fields.items
-        );
+        // console.log(res.data.data.data.frontend_page_shop_list_recommend.fields.items);
+        let base = res.data.data.data.frontend_page_shop_list_recommend.fields.items
+        this.shop = base
+        console.log(this.shop);
+        let ts = ''
+        let tbox = []
+        for (let i = 0; i < this.shop.length; i++) {
+          ts = 'name:' + this.shop[i].fields.restaurant.name + ',' + 'snum' + this.shop[i].fields.restaurant.recentOrderNumDisplay
+          tbox.push(ts)
+        }
+        console.log(tbox);
       });
     },
+
+
   },
 };
 </script>
