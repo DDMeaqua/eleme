@@ -36,7 +36,9 @@
       <!-- 首页的商家 -->
       <div class="shop">
         <div class="restaurant" v-for="(item,index) in shop" :key="index">
-          <span>{{item.fields.restaurant.name}}</span>
+          <img :src="`${item.imagePath}`" style="width:100px">
+          <h3>{{item.name}}</h3>
+          <span>{{item.recentOrderNumDisplay}}{{item.averagePrice}}</span>
         </div>
       </div>
 
@@ -88,15 +90,14 @@ export default {
       this.$axios("/shop.json").then((res) => {
         // console.log(res.data.data.data.frontend_page_shop_list_recommend.fields.items);
         let base = res.data.data.data.frontend_page_shop_list_recommend.fields.items
-        this.shop = base
-        console.log(this.shop);
-        let ts = ''
+        // console.log(base);
+        
         let tbox = []
-        for (let i = 0; i < this.shop.length; i++) {
-          ts = 'name:' + this.shop[i].fields.restaurant.name + ',' + 'snum' + this.shop[i].fields.restaurant.recentOrderNumDisplay
-          tbox.push(ts)
+        for (let i = 0; i < base.length; i++) {
+          tbox.push(base[i].fields.restaurant)
         }
         console.log(tbox);
+        this.shop = tbox
       });
     },
 
