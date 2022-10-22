@@ -5,13 +5,18 @@
         <i class="fa fa-search"></i>
         <input v-model="city_val" type="text" placeholder="输入城市名" />
       </div>
-      <button @click="$router.go(-1)">取消</button>
+      <button @click="$router.push({name:'address',params:{city:city} })">取消</button>
     </div>
-    <div>
+    <div v-if="searchList.length == 0" style="height:100%">
       <div class="location">
-        <Location :address="city"></Location>
+        <Location @click="selectCity(city)" :address="city" ></Location>
       </div>
-      <Cities :allcity="allcity"></Cities>
+      <Cities @selectCity="selectCity" :allcity="allcity"></Cities>
+    </div>
+    <div class="search_list" v-else>
+      <ul>
+        <li @click="selectCity(item)" v-for="(item,index) in searchList" :key="index">{{item}}</li>
+      </ul>
     </div>
   </div>
 </template>
@@ -24,9 +29,10 @@ export default {
   data() {
     return {
       city_val: "",
-      cityInfo: "",
+      cityInfo: null,
       keys: [],
-      allcity:[]
+      allcity:[],
+      searchList:[]
     };
   },
   components: {
@@ -43,19 +49,44 @@ export default {
   created() {
     this.getCityInfo();
   },
+  watch: {
+    city_val() {
+      console.log(this.city_val);
+      this.searchCity()
+    }
+  },
   methods: {
     getCityInfo() {
       this.$axios(
         "https://shadow.elemecdn.com/lib/city-list@0.0.3/city_list.json"
       ).then((res) => {
-        console.log(res.data);
+        // console.log(res.data);
         for (let i = 0; i < res.data.cityList.length; i++) {
           for (let j = 0; j < res.data.cityList[i].cities.length; j++) {
             this.allcity.push(res.data.cityList[i].cities[j].name)
           }
         }
-        console.log(this.allcity);
+        // console.log(this.allcity);
       });
+    },
+
+    selectCity(city){
+      // console.log(city);
+      this.$router.push({name:"address",params:{city:city}})
+      console.log(city);
+    },
+
+    searchCity(){
+      if(!this.city_val){
+        // 判断输入框是否为空
+        this.searchList = []
+      }else{
+        // 根据输入框关键字检索城市 存入到searchList数组中
+        this.searchList = this.allcity.filter(item =>{
+          return item.indexOf(this.city_val) != -1;
+        })
+        console.log(this.searchList);
+      }
     },
   },
 };
@@ -106,4 +137,14 @@ export default {
   height: 65px;
   box-sizing: border-box;
 }
+
+.search_list {
+  background-color: #fff;
+  padding: 5px 16px;
+}
+.search_list li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
 </style>

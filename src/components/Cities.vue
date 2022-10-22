@@ -1,7 +1,7 @@
 <template>
     <div class="cities">
         <ul>
-            <li v-for="(item,index) in allcity" :key="index">{{item}}</li>
+            <li @click="$emit('selectCity',item)" v-for="(item,index) in allcity" :key="index">{{item}}</li>
         </ul>
     </div>
 </template>
