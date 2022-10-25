@@ -13,17 +13,29 @@
       </div>
     </nav>
 
-    <!-- 弹窗title -->
+    <!-- 商家信息 -->
     <div class="index-rst">
       <div class="rst-name">
         <span @click="showInfoModel = true">{{ shopInfo.info.name }}</span>
         <i class="fa fa-caret-right"></i>
       </div>
+      <!-- 弹窗信息 -->
       <Infomodel
         @close="showInfoModel = false"
         :info="shopInfo.info"
         :showInfoModel="showInfoModel"
       ></Infomodel>
+
+      <!-- 优惠信息 -->
+      <div class="rst-order">
+        <span>{{ shopInfo.info.foodScore }}</span>
+        <span>月售2000+</span>
+        <span>{{ shopInfo.info.deliveryTime }}分钟</span>
+      </div>
+      <!-- 优惠信息 -->
+      <!-- 公告 -->
+      <p class="rst-promotion">品牌至今，积极创新，贴近百姓生活，服务千家万户</p>
+
     </div>
   </div>
 </template>
@@ -119,5 +131,26 @@ export default {
   text-align: left;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.index-rst .rst-order{
+  white-space: nowrap;
+  height: 3.2vw;
+  margin-top: 1.73333vw;
+  color: #666;
+  text-align: center;
+  font-size: 0.6rem;
+}
+.rst-order span{
+  margin: 0 3px;
+}
+.index-rst .rst-promotion{
+  width: 80vw;
+  font-size: 0.6rem;
+  color: #999;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin: 2.266667vw auto;
+  padding: 0;
+  white-space: nowrap;
 }
 </style>
