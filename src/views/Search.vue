@@ -77,8 +77,10 @@ import Header from "../components/Header.vue"
     color: #333;
     font-size: 0.426667rem;
     background-color: #fff;
+    border: 1px solid rgb(211, 211, 211);
+    border-radius: 4px;
     font-weight: 700;
-    margin-left: 2.9333vw;
+    margin-left: 2.933333vw;
     font-size: 14px;
 }
 </style>

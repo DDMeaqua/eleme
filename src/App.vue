@@ -66,7 +66,7 @@ export default {
               geocoder.getAddress(lnglat, function (status, data) {
                 if (status === "complete" && data.info === "OK") {
                   // result为对应的地理位置详细信息
-                  console.log(data);
+                  console.log("定位成功");
                   self.$store.dispatch("setLocation",{
                     addressComponent:{
                       city:result.city,

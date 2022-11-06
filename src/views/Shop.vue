@@ -26,22 +26,28 @@
         :showInfoModel="showInfoModel"
       ></Infomodel>
 
-      <!-- 优惠信息 -->
+      <!-- 评分月售 -->
       <div class="rst-order">
         <span>{{ shopInfo.info.foodScore }}</span>
         <span>月售2000+</span>
         <span>{{ shopInfo.info.deliveryTime }}分钟</span>
       </div>
-      <!-- 优惠信息 -->
       <!-- 公告 -->
-      <p class="rst-promotion">品牌至今，积极创新，贴近百姓生活，服务千家万户</p>
-
+      <p class="rst-promotion">
+        品牌至今，积极创新，贴近百姓生活，服务千家万户
+      </p>
     </div>
+
+    <!-- 导航 -->
+    <NavBar></NavBar>
+    <router-view></router-view>
+
   </div>
 </template>
 
 <script>
 import Infomodel from "../components/Infomodel.vue";
+import NavBar from "../components/NavBar.vue";
 export default {
   name: "shop",
   data() {
@@ -57,12 +63,13 @@ export default {
     getData() {
       this.$axios("/more.json").then((res) => {
         this.shopInfo = res.data;
-        console.log(this.shopInfo);
+        // console.log(this.shopInfo);
       });
     },
   },
   components: {
     Infomodel,
+    NavBar,
   },
 };
 </script>
@@ -132,7 +139,7 @@ export default {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.index-rst .rst-order{
+.index-rst .rst-order {
   white-space: nowrap;
   height: 3.2vw;
   margin-top: 1.73333vw;
@@ -140,10 +147,10 @@ export default {
   text-align: center;
   font-size: 0.6rem;
 }
-.rst-order span{
+.rst-order span {
   margin: 0 3px;
 }
-.index-rst .rst-promotion{
+.index-rst .rst-promotion {
   width: 80vw;
   font-size: 0.6rem;
   color: #999;
