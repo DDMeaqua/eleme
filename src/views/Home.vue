@@ -127,8 +127,8 @@ export default {
         for (let i = 0; i < base.length; i++) {
           tbox.push(base[i].fields.restaurant);
         }
-        // console.log(tbox);
         this.shop = tbox;
+        console.log(this.shop);
       });
     },
   },
