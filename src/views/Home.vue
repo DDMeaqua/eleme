@@ -128,7 +128,7 @@ export default {
           tbox.push(base[i].fields.restaurant);
         }
         this.shop = tbox;
-        console.log(this.shop);
+        // console.log(this.shop);
       });
     },
   },

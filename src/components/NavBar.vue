@@ -28,7 +28,7 @@ export default {
     line-height: 10.66666vw;
     border-bottom: 1px solid #e4e4e4;
     background-color: #fff;
-    position: static;
+    position: sticky;
     top: 0px;
     z-index: 10;
 }
