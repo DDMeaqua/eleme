@@ -20,9 +20,9 @@
               <strong>{{ g.name }}</strong>
             </div>
             <!-- 内容下 -->
-            <div @click="handleFood(f)" class="fooddetails" v-for="(f, i) in g.foods" :key="i">
+            <div class="fooddetails" v-for="(f, i) in g.foods" :key="i">
               <!-- 左 -->
-              <img :src="f.icon" alt="" />
+              <img  @click="handleFood(f)" :src="f.icon" alt="" />
               <!-- 右 -->
               <section class="fooddetails-info">
                 <h4>{{ f.name }}</h4>
