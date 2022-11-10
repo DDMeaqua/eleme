@@ -20,7 +20,7 @@
               <strong>{{ g.name }}</strong>
             </div>
             <!-- 内容下 -->
-            <div class="fooddetails" v-for="(f, i) in g.foods" :key="i">
+            <div @click="handleFood(f)" class="fooddetails" v-for="(f, i) in g.foods" :key="i">
               <!-- 左 -->
               <img :src="f.icon" alt="" />
               <!-- 右 -->
@@ -40,12 +40,21 @@
         </ul>
       </div>
     </div>
+
+    <!-- 购物车 -->
+    <ShopCart :shopInfo="shopInfo"></ShopCart>
+
+    <!-- 商品详情 -->
+    <Food :food="selectedFood" :isShow="showFood" @close="showFood = false"></Food>
+
   </div>
 </template>
 
 <script>
 import CartControll from "../components/CartControll.vue";
 import BScroll from "better-scroll";
+import ShopCart from "../components/ShopCart.vue";
+import Food from "./Food.vue";
 export default {
   name: "Goods",
   data() {
@@ -53,6 +62,8 @@ export default {
       shopInfo: null,
       menuScroll: {}, //左侧滚动对象
       foodScroll: {}, //右侧滚动对象
+      selectedFood: null,  //食物详情
+      showFood:false
     };
   },
   created() {
@@ -69,7 +80,7 @@ export default {
         });
 
         this.shopInfo = res.data.goods;
-        console.log(this.shopInfo);
+        // console.log(this.shopInfo);
 
         // DOM已更新
         this.$nextTick(() => {
@@ -97,9 +108,16 @@ export default {
       // 滚动到对应元素的位置
       this.foodScroll.scrollToElement(el, 100);
     },
+
+    // 商品详情
+    handleFood(food){
+      console.log(food);
+      this.selectedFood = food
+      this.showFood = true
+    }
   },
   components: {
-    CartControll,
+    CartControll,ShopCart,Food
   },
 };
 </script>
