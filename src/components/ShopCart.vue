@@ -88,9 +88,6 @@ import CartControll from '../components/CartControll'
                 })
             }
         },
-        created(){
-            console.log(this.shopInfo);
-        },
         components:{
             CartControll
         }

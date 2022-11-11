@@ -28,7 +28,7 @@
 
       <!-- 评分月售 -->
       <div class="rst-order">
-        <span>{{ shopInfo.info.foodScore }}</span>
+        <span>{{ shopInfo.info.foodScore + 0.4 }}分</span>
         <span>月售2000+</span>
         <span>{{ shopInfo.info.deliveryTime }}分钟</span>
       </div>
