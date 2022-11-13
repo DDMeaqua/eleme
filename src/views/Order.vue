@@ -3,21 +3,24 @@
         <h1>我的订单：</h1>
         <ul>
             <li>
-                <h4>嘉禾一品（杨家湾店）</h4>
+                <h4>沙县小吃（杨家湾店）</h4>
+                <img src="../../public/img/D1.png" alt="">
                 <span class="tim">已送达</span>
                 <span class="dao">共消费:￥20</span>
             </li>
 
             <li>
-                <h4>嘉禾一品（杨家湾店）</h4>
+                <h4>鸡公煲（杨家湾店）</h4>
+                <img src="../../public/img/D2.png" alt="">
                 <span class="tim">已送达</span>
-                <span class="dao">共消费:￥20</span>
+                <span class="dao">共消费:￥18</span>
             </li>
 
             <li>
-                <h4>嘉禾一品（杨家湾店）</h4>
+                <h4>沙县小吃（杨家湾店）</h4>
+                <img src="../../public/img/D3.png" alt="">
                 <span class="tim">已送达</span>
-                <span class="dao">共消费:￥20</span>
+                <span class="dao">共消费:￥19</span>
             </li>
         </ul>
     </div>
@@ -31,6 +34,9 @@
 </script>
 
 <style scoped>
+.order{
+    padding-bottom: 40px;
+}
 h1{
     background-color: #fff;
     font-size: 1.8rem;
@@ -59,5 +65,9 @@ li .tim{
 li .dao{
     font-size: 1rem;
     margin-left: 160px;
+}
+li img{
+    width: 300px;
+    margin-bottom: 8px;
 }
 </style>
