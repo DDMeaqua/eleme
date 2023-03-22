@@ -43,7 +43,7 @@
 
       <!-- 首页的商家 -->
       <div class="shop">
-        <div class="restaurant" v-for="(item, index) in shop" :key="index">
+        <div @click="$router.push('/shop')" class="restaurant" v-for="(item, index) in shop" :key="index">
           <!-- 左侧图片 -->
           <div class="logo_img">
             <img :src="`${item.imagePath}`" />
@@ -127,8 +127,8 @@ export default {
         for (let i = 0; i < base.length; i++) {
           tbox.push(base[i].fields.restaurant);
         }
-        // console.log(tbox);
         this.shop = tbox;
+        console.log(this.shop);
       });
     },
   },
