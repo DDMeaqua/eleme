@@ -83,7 +83,7 @@ export default {
       }else{
         // 根据输入框关键字检索城市 存入到searchList数组中
         this.searchList = this.allcity.filter(item =>{
-          return item.indexOf(this.city_val) != -1;
+          return item.indexOf(this.city_val) >= 0;
         })
         console.log(this.searchList);
       }
