@@ -3,8 +3,3 @@ module.exports = defineConfig({
   transpileDependencies: true
 })
 
-module.exports = {
-    devServer:{
-      before:require('./mock/index.js')
-    }
-}
